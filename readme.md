@@ -1,46 +1,39 @@
 # 🤖 MiniBot - AI Chatbot
 
-A simple and clean AI chatbot web app built using HTML, CSS, and JavaScript. This mini project mimics chat interaction using dummy AI replies and is perfect for beginners.
+A simple and responsive AI chatbot web app. This project now integrates with the Sarvam AI API for dynamic conversations.
 
 ## 💡 Features
-- Chat UI with user/bot messages
-- Dummy AI logic (can be upgraded to OpenAI API)
-- Responsive layout
-- Lightweight and beginner-friendly
+
+  - **Sarvam AI Integration**: The bot now uses the Sarvam AI API for real-time responses.
+  - **Persistent Sessions**: Conversation history is maintained using a `session_id`.
+  - **Custom AI Personality**: You can set a custom personality for the AI using a dropdown menu and a pop-up modal.
+  - **Light/Dark Mode**: The UI includes a theme toggle that saves your preference in local storage.
+  - **Animated UI**: The interface features subtle animations for a modern and engaging user experience.
+  - **Neubrutalism Design**: The entire UI has been redesigned with a bold, retro-futuristic Neubrutalism style.
+  - **Full-Screen & Responsive**: The layout is now full-screen and adjusts seamlessly to different screen sizes.
 
 ## 🛠 Tech Stack
-- HTML
-- CSS
-- JavaScript
 
-## 📸 Preview
-![Chat UI Screenshot](screenshot.png)
+  - HTML
+  - CSS
+  - JavaScript
+  - Sarvam AI API
 
 ## 🚀 Run Locally
-1. Clone the repo
 
-git clone https://github.com/yourusername/mini-ai-chatbot.git
-Open index.html in your browser
+1.  Clone the repo
 
-🌐 Live Demo
-Click to view
+    ```bash
+    git clone https://github.com/abhiramiramadas/mini-ai-chatbot.git
+    ```
 
-📌 Future Ideas
-Add OpenAI API integration
+2.  Open `index.html` in your browser.
 
-Save chat history
+## 📌 Future Ideas
 
-Add bot personality (e.g., StudyBot, JokeBot, etc.)
+  - Add more pre-defined personalities.
+  - Implement an audio-to-text input feature.
+  - Save chat history between sessions.
 
 Made with ❤️ by Abby
-
-
-
----
-
-Want help with:
-- ✅ OpenAI version?
-- 🔗 Deploying on GitHub Pages?
-- ✨ Adding animations/dark mode?
-
-Let me know, and congrats — you’ve got your first cool GitHub AI project! 🎉
+Custom Ai integrated by Prakhar
