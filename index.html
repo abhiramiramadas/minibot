@@ -13,7 +13,6 @@
       <h2 class="app-title">Mini AI Chatbot</h2>
       <div class="header-actions">
         <button id="theme-toggle" class="neobrutal-button" title="Toggle Theme"><i class="fas fa-moon"></i></button>
-        <button onclick="resetChat()" id="resetButton" class="neobrutal-button" title="Reset Chat"><i class="fas fa-sync-alt"></i></button>
       </div>
     </div>
     <div class="config-area">
@@ -34,14 +33,35 @@
     </div>
   </div>
 
-  <!-- Custom Prompt Modal -->
   <div id="custom-prompt-modal" class="modal">
     <div class="modal-content neobrutal-modal-content">
       <h3 class="modal-title">Set Custom Personality</h3>
-      <textarea id="customPromptInput" placeholder="Enter your custom personality instruction here..."></textarea>
+      <p>This instruction will guide the AI's behavior throughout the conversation.</p>
+      <textarea id="customPromptInput" class="neobrutal-textarea" placeholder="Enter your custom personality instruction here..."></textarea>
       <div class="modal-buttons">
         <button onclick="saveCustomPrompt()" class="neobrutal-button">Save</button>
-        <button onclick="closeModal()" class="neobrutal-button cancel-button">Cancel</button>
+        <button onclick="closeModal('custom-prompt-modal')" class="neobrutal-button cancel-button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="api-key-modal-gemini" class="modal">
+    <div class="modal-content neobrutal-modal-content">
+      <h3 class="modal-title">Enter Gemini API Key</h3>
+      <p>You can get your API key from <a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a>.</p>
+      <input type="password" id="geminiApiKeyInput" placeholder="Paste your API key here..." class="neobrutal-input" />
+      <div class="modal-buttons">
+        <button onclick="saveGeminiApiKey()" class="neobrutal-button">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="error-modal" class="modal">
+    <div class="modal-content neobrutal-modal-content">
+      <h3 class="modal-title">Error</h3>
+      <p id="errorMessage"></p>
+      <div class="modal-buttons">
+        <button onclick="closeModal('error-modal')" class="neobrutal-button cancel-button">Close</button>
       </div>
     </div>
   </div>

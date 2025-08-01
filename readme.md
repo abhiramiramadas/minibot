@@ -17,7 +17,7 @@ A simple and responsive AI chatbot web app. This project now integrates with the
   - HTML
   - CSS
   - JavaScript
-  - Sarvam AI API
+  - Gemini AI API
 
 ## 🚀 Run Locally
 
