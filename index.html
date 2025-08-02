@@ -13,6 +13,8 @@
       <h2 class="app-title">Mini AI Chatbot</h2>
       <div class="header-actions">
         <button id="theme-toggle" class="neobrutal-button" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+        <button id="stt-button" onclick="toggleSpeechToText()" class="neobrutal-button" title="Speak"><i class="fas fa-microphone"></i></button>
+        <a href="settings/index.html" class="neobrutal-button" title="Settings"><i class="fas fa-cog"></i></a>
       </div>
     </div>
     <div class="config-area">
@@ -30,6 +32,7 @@
     <div class="input-area">
       <input type="text" id="userInput" placeholder="Type your message..." class="neobrutal-input" />
       <button onclick="sendMessage()" class="neobrutal-button send-button"><i class="fas fa-paper-plane"></i></button>
+      <div id="command-suggestion" class="command-suggestion">/generate</div>
     </div>
   </div>
 
@@ -56,6 +59,17 @@
     </div>
   </div>
 
+    <div id="api-key-modal-huggingface" class="modal">
+    <div class="modal-content neobrutal-modal-content">
+      <h3 class="modal-title">Enter Hugging Face API Key</h3>
+      <p>You can get your API key from <a href="https://huggingface.co/settings/tokens/new?ownUserPermissions=inference.serverless.write&ownUserPermissions=inference.endpoints.infer.write&ownUserPermissions=inference.endpoints.write&ownUserPermissions=user.billing.read&tokenType=fineGrained" target="_blank">Hugging Face settings</a>.</p>
+      <input type="password" id="huggingfaceApiKeyInput" placeholder="Paste your API key here..." class="neobrutal-input" />
+      <div class="modal-buttons">
+        <button onclick="saveHuggingFaceApiKey()" class="neobrutal-button">Save</button>
+      </div>
+    </div>
+  </div>
+
   <div id="error-modal" class="modal">
     <div class="modal-content neobrutal-modal-content">
       <h3 class="modal-title">Error</h3>
@@ -65,7 +79,7 @@
       </div>
     </div>
   </div>
-
-  <script src="script.js"></script>
+  
+  <script type="module" src="script.js"></script>
 </body>
 </html>
