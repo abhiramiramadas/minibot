@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Custom Theme - Mini AI Chatbot</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="custom.css" />
+</head>
+<body>
+  <div class="chat-container">
+    <div class="header">
+      <a href="../settings/index.html" class="neobrutal-button back-button" title="Back to Settings"><i class="fas fa-arrow-left"></i></a>
+      <h2 class="app-title">Custom Theme</h2>
+      <div class="header-actions">
+        <button id="theme-toggle" class="neobrutal-button" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+      </div>
+    </div>
+    <div class="settings-content">
+      <div class="setting-item">
+        <span>Custom Main Color</span>
+        <input type="color" id="custom-main-color" class="neobrutal-color-input">
+      </div>
+      <div class="setting-item">
+        <span>Custom Background Color</span>
+        <input type="color" id="custom-bg-color" class="neobrutal-color-input">
+      </div>
+      <div class="setting-item">
+        <span>Custom Font URL (Google Fonts)</span>
+        <input type="text" id="custom-font-url" class="neobrutal-input" placeholder="e.g. https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
+      </div>
+      <div class="setting-item">
+        <span>Custom Font Family Name</span>
+        <input type="text" id="custom-font-name" class="neobrutal-input" placeholder="e.g. 'Roboto Mono', monospace">
+      </div>
+      <button id="save-custom-theme-button" class="neobrutal-button">Save Custom Theme</button>
+    </div>
+  </div>
+  <script type="module" src="script.js"></script>
+  <script type="module" src="../script.js"></script>
+</body>
+</html>

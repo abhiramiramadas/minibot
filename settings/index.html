@@ -39,6 +39,28 @@
         <span>Update Hugging Face API Key</span>
         <button onclick="forceShowApiKeyModal('huggingface')" class="neobrutal-button">Update</button>
       </div>
+      <div class="setting-item">
+        <span>Chat Font</span>
+        <select id="font-select" class="neobrutal-select">
+          <option value="'Courier New', monospace">Courier New</option>
+          <option value="'Roboto Mono', monospace">Roboto Mono</option>
+          <option value="'Arial', sans-serif">Arial</option>
+          <option value="'Verdana', sans-serif">Verdana</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <span>Chat Theme</span>
+        <select id="theme-select" class="neobrutal-select">
+          <option value="light">Light Mode</option>
+          <option value="dark">Dark Mode</option>
+          <option value="ocean">Ocean Theme</option>
+          <option value="forest">Forest Theme</option>
+        </select>
+      </div>
+      <div class="setting-item">
+        <span>Custom Theme & Fonts</span>
+        <a href="../custom/index.html" class="neobrutal-button">Customize</a>
+      </div>
     </div>
   </div>
 
@@ -46,7 +68,7 @@
     <div class="modal-content neobrutal-modal-content">
       <h3 class="modal-title">Enter Gemini API Key</h3>
       <p>You can get your API key from <a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a>.</p>
-      <input type="password" id="geminiApiKeyInput" placeholder="Paste your API key here..." class="neobrutal-input" />
+      <input type="text" id="geminiApiKeyInput" placeholder="Paste your API key here..." class="neobrutal-input" />
       <div class="modal-buttons">
         <button onclick="saveGeminiApiKey()" class="neobrutal-button">Save</button>
         <button onclick="closeModal('api-key-modal-gemini')" class="neobrutal-button cancel-button">Cancel</button>
@@ -57,7 +79,7 @@
     <div class="modal-content neobrutal-modal-content">
       <h3 class="modal-title">Enter Hugging Face API Key</h3>
       <p>You can get your API key from <a href="https://huggingface.co/settings/tokens/new?ownUserPermissions=inference.serverless.write&ownUserPermissions=inference.endpoints.infer.write&ownUserPermissions=inference.endpoints.write&ownUserPermissions=user.billing.read&tokenType=fineGrained" target="_blank">Hugging Face settings</a>.</p>
-      <input type="password" id="huggingfaceApiKeyInput" placeholder="Paste your API key here..." class="neobrutal-input" />
+      <input type="text" id="huggingfaceApiKeyInput" placeholder="Paste your API key here..." class="neobrutal-input" />
       <div class="modal-buttons">
         <button onclick="saveHuggingFaceApiKey()" class="neobrutal-button">Save</button>
         <button onclick="closeModal('api-key-modal-huggingface')" class="neobrutal-button cancel-button">Cancel</button>

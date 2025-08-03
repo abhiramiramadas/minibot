@@ -30,9 +30,16 @@
     </div>
     <div id="chatbox" class="neobrutal-chatbox"></div>
     <div class="input-area">
+      <div id="file-preview-container" style="display: none;">
+        <span id="file-preview-name"></span>
+        <button id="remove-file-button"><i class="fas fa-times"></i></button>
+      </div>
       <input type="text" id="userInput" placeholder="Type your message..." class="neobrutal-input" />
+      <input type="file" id="fileInput" accept="image/*,video/*,application/pdf" style="display:none;" />
+      <button id="attachButton" class="neobrutal-button" title="Attach file"><i class="fas fa-paperclip"></i></button>
       <button onclick="sendMessage()" class="neobrutal-button send-button"><i class="fas fa-paper-plane"></i></button>
       <div id="command-suggestion" class="command-suggestion">/generate</div>
+      <div id="reset-suggestion" class="command-suggestion">/reset</div>
     </div>
   </div>
 
@@ -59,7 +66,7 @@
     </div>
   </div>
 
-    <div id="api-key-modal-huggingface" class="modal">
+  <div id="api-key-modal-huggingface" class="modal">
     <div class="modal-content neobrutal-modal-content">
       <h3 class="modal-title">Enter Hugging Face API Key</h3>
       <p>You can get your API key from <a href="https://huggingface.co/settings/tokens/new?ownUserPermissions=inference.serverless.write&ownUserPermissions=inference.endpoints.infer.write&ownUserPermissions=inference.endpoints.write&ownUserPermissions=user.billing.read&tokenType=fineGrained" target="_blank">Hugging Face settings</a>.</p>
@@ -79,7 +86,7 @@
       </div>
     </div>
   </div>
-  
+
   <script type="module" src="script.js"></script>
 </body>
 </html>

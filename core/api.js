@@ -28,7 +28,22 @@ export async function callGeminiApi(conversationHistory, systemInstruction) {
       ]
     });
   }
-  fullConversation.push(...conversationHistory);
+
+  conversationHistory.forEach(historyItem => {
+    const parts = [];
+    historyItem.parts.forEach(part => {
+      if (part.text) {
+        parts.push({ "text": part.text });
+      }
+      if (part.inline_data) {
+        parts.push({ "inline_data": part.inline_data });
+      }
+    });
+    fullConversation.push({
+      "role": historyItem.role,
+      "parts": parts
+    });
+  });
 
   const response = await fetch(GEMINI_API_ENDPOINT, {
     method: "POST",
