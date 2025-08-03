@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Preferences - Mini AI Chatbot</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .preference-section {
+      margin-bottom: 30px;
+      border: 2px solid var(--light-border-color);
+      padding: 20px;
+      background-color: var(--light-message-bg);
+      box-shadow: 4px 4px 0px var(--light-shadow-color);
+    }
+    .preference-section h3 {
+      margin-top: 0;
+      color: var(--light-primary-color);
+      font-size: 1.2rem;
+    }
+    .tag-input-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+    }
+    .tag {
+      background-color: var(--light-primary-color);
+      color: var(--light-bg-color);
+      padding: 4px 8px;
+      border: 1px solid var(--light-border-color);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .tag .remove-tag {
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .add-tag-input {
+      border: 1px solid var(--light-border-color);
+      padding: 4px 8px;
+      font-size: 12px;
+      background-color: var(--light-container-bg);
+      color: var(--light-text-color);
+    }
+    .session-info {
+      background-color: var(--light-secondary-color);
+      color: var(--light-bg-color);
+      padding: 10px;
+      border: 2px solid var(--light-border-color);
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+    .danger-zone {
+      border-color: #e63946;
+      background-color: #ffebee;
+    }
+    .danger-zone h3 {
+      color: #e63946;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="header">
+      <a href="../settings/index.html" class="neobrutal-button back-button" title="Back to Settings"><i class="fas fa-arrow-left"></i></a>
+      <h2 class="app-title">User Preferences</h2>
+      <div class="header-actions">
+        <button id="theme-toggle" class="neobrutal-button" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+      </div>
+    </div>
+    <div class="settings-content">
+      
+      <div class="session-info">
+        <strong>Session ID:</strong> <span id="session-id">Loading...</span><br>
+        <strong>Session Created:</strong> <span id="session-created">Loading...</span>
+      </div>
+
+      <div class="preference-section">
+        <h3><i class="fas fa-user"></i> Personality Preferences</h3>
+        <div class="setting-item">
+          <span>Preferred AI Personality</span>
+          <select id="preferred-personality" class="neobrutal-select">
+            <option value="">No Preference</option>
+            <option value="helpful">Helpful & Friendly</option>
+            <option value="creative">Creative & Imaginative</option>
+            <option value="analytical">Analytical & Logical</option>
+            <option value="casual">Casual & Conversational</option>
+            <option value="professional">Professional & Formal</option>
+          </select>
+        </div>
+        
+        <div class="setting-item">
+          <span>Conversation Style</span>
+          <select id="conversation-style" class="neobrutal-select">
+            <option value="balanced">Balanced</option>
+            <option value="casual">Casual & Friendly</option>
+            <option value="formal">Formal & Professional</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="preference-section">
+        <h3><i class="fas fa-heart"></i> Favorite Topics</h3>
+        <p>Add topics you're interested in to help personalize conversations:</p>
+        <div id="favorite-topics" class="tag-input-container">
+          <input type="text" id="new-topic-input" class="add-tag-input" placeholder="Add topic..." maxlength="20">
+          <button id="add-topic-btn" class="neobrutal-button" style="padding: 4px 8px; font-size: 12px;">Add</button>
+        </div>
+      </div>
+
+      <div class="preference-section">
+        <h3><i class="fas fa-bell"></i> Memory & Reminders</h3>
+        <div class="setting-item">
+          <span>Remember Important Conversations</span>
+          <label class="switch">
+            <input type="checkbox" id="remember-conversations">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        
+        <div class="setting-item">
+          <span>Smart Reminders</span>
+          <label class="switch">
+            <input type="checkbox" id="smart-reminders">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <span>Reminder Frequency</span>
+          <select id="reminder-frequency" class="neobrutal-select">
+            <option value="smart">Smart (Context-based)</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="never">Never</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="preference-section">
+        <h3><i class="fas fa-shield-alt"></i> Privacy Settings</h3>
+        <div class="setting-item">
+          <span>Allow Personal Information Sharing</span>
+          <label class="switch">
+            <input type="checkbox" id="share-personal-info">
+            <span class="slider round"></span>
+          </label>
+        </div>
+        
+        <div class="setting-item">
+          <span>Store Conversation Context</span>
+          <label class="switch">
+            <input type="checkbox" id="store-context">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="preference-section">
+        <h3><i class="fas fa-download"></i> Data Management</h3>
+        <div class="setting-item">
+          <span>Export Your Data</span>
+          <button id="export-data-btn" class="neobrutal-button">Download Data</button>
+        </div>
+      </div>
+
+      <div class="preference-section danger-zone">
+        <h3><i class="fas fa-exclamation-triangle"></i> Danger Zone</h3>
+        <div class="setting-item">
+          <span>Clear All Session Data</span>
+          <button id="clear-session-btn" class="neobrutal-button" style="background-color: #e63946;">Clear Data</button>
+        </div>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+          This will permanently delete all your preferences, conversation history, and session data.
+        </p>
+      </div>
+
+      <div class="setting-item" style="margin-top: 30px;">
+        <button id="save-preferences-btn" class="neobrutal-button" style="background-color: var(--light-secondary-color);">
+          <i class="fas fa-save"></i> Save All Preferences
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="preferences.js"></script>
+  <script type="module" src="../script.js"></script>
+</body>
+</html>

@@ -3,6 +3,7 @@ import * as ui from "./core/ui.js";
 import * as api from "./core/api.js";
 import * as speech from "./core/speech.js";
 import * as settings from "./core/settings.js";
+import { sessionManager, analyzeCurrentConversation, getPersonalizedContext, getRelevantContext } from "./core/session.js";
 
 const userInput = document.getElementById("userInput");
 const systemInstructionDropdown = document.getElementById("systemInstruction");
@@ -66,6 +67,14 @@ window.onload = () => {
     speech.registerToggleSTTCallback(() => {
       speakBtn.classList.toggle('listening', speech.isListening);
     });
+    
+    // Initialize session manager and display personalized greeting if user has preferences
+    const personalizedContext = getPersonalizedContext();
+    if (personalizedContext && conversationHistory.length === 0) {
+      setTimeout(() => {
+        ui.addMessage("Welcome back! I've remembered your preferences to provide a more personalized experience.", "bot");
+      }, 1000);
+    }
   } else {
     settings.setupSettingsToggles(speakBtn);
   }
@@ -204,7 +213,7 @@ async function sendMessage() {
           conversationHistory.push(newHistoryItem);
 
           try {
-            const botResponse = await api.callGeminiApi(conversationHistory, currentSystemInstruction);
+            const botResponse = await api.callGeminiApi(conversationHistory, currentSystemInstruction, getPersonalizedContext());
             if (botResponse) {
               ui.addMessage(botResponse, "bot");
               conversationHistory.push({
@@ -213,6 +222,10 @@ async function sendMessage() {
                   {"text": botResponse}
                 ]
               });
+              
+              // Analyze conversation for learning user preferences
+              analyzeCurrentConversation(conversationHistory);
+              
               if (localStorage.getItem('ttsEnabled') === 'true') {
                   speech.speakText(botResponse);
               }
@@ -238,7 +251,7 @@ async function sendMessage() {
       }
 
       try {
-        const botResponse = await api.callGeminiApi(conversationHistory, currentSystemInstruction);
+        const botResponse = await api.callGeminiApi(conversationHistory, currentSystemInstruction, getPersonalizedContext());
         if (botResponse) {
           ui.addMessage(botResponse, "bot");
           conversationHistory.push({
@@ -247,6 +260,10 @@ async function sendMessage() {
               {"text": botResponse}
             ]
           });
+          
+          // Analyze conversation for learning user preferences
+          analyzeCurrentConversation(conversationHistory);
+          
           if (localStorage.getItem('ttsEnabled') === 'true') {
               speech.speakText(botResponse);
           }
