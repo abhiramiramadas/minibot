@@ -3,18 +3,32 @@ import * as ui from '../core/ui.js';
 
 window.onload = () => {
     loadCustomSettings();
+    setupEventListeners();
+};
 
+function setupEventListeners() {
     const saveCustomThemeButton = document.getElementById('save-custom-theme-button');
     if (saveCustomThemeButton) {
         saveCustomThemeButton.addEventListener('click', saveCustomTheme);
     }
-};
+    
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            ui.setTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+}
 
 function saveCustomTheme() {
     const customMainColor = document.getElementById('custom-main-color').value;
     const customBgColor = document.getElementById('custom-bg-color').value;
-    const customFontUrl = document.getElementById('custom-font-url').value;
-    const customFontName = document.getElementById('custom-font-name').value;
+    const customFontUrl = document.getElementById('custom-font-url').value.trim();
+    const customFontName = document.getElementById('custom-font-name').value.trim();
 
     localStorage.setItem('customMainColor', customMainColor);
     localStorage.setItem('customBgColor', customBgColor);
@@ -23,7 +37,32 @@ function saveCustomTheme() {
     localStorage.setItem('theme', 'custom');
 
     applyCustomSettings();
-    alert('Custom theme saved!');
+    
+    // Show success message
+    showSuccessMessage('Custom theme saved and applied!');
+}
+
+function showSuccessMessage(message) {
+    // Create a temporary success message
+    const messageDiv = document.createElement('div');
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: var(--light-secondary-color);
+        color: var(--light-bg-color);
+        padding: 15px 20px;
+        border: 2px solid var(--light-border-color);
+        box-shadow: 4px 4px 0px var(--light-shadow-color);
+        z-index: 1000;
+        font-weight: bold;
+    `;
+    messageDiv.textContent = message;
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => {
+        messageDiv.remove();
+    }, 3000);
 }
 
 function loadCustomSettings() {

@@ -7,18 +7,28 @@ function getApiKey(type) {
   return encodedKey ? atob(encodedKey) : null;
 }
 
-export async function callGeminiApi(conversationHistory, systemInstruction) {
+export async function callGeminiApi(conversationHistory, systemInstruction, personalizedContext = null) {
   const geminiKey = getApiKey('gemini');
   if (!geminiKey) {
     throw new Error("Gemini API key is not set. Please enter your key to continue the conversation.");
   }
 
   const fullConversation = [];
-  if (systemInstruction) {
+  
+  // Add system instruction with personalized context
+  if (systemInstruction || personalizedContext) {
+    let systemMessage = "";
+    if (systemInstruction) {
+      systemMessage += `System Instruction: ${systemInstruction}`;
+    }
+    if (personalizedContext) {
+      systemMessage += systemMessage ? ` Additional Context: ${personalizedContext}` : `Context: ${personalizedContext}`;
+    }
+    
     fullConversation.push({
       "role": "user",
       "parts": [
-        {"text": `System Instruction: ${systemInstruction}`}
+        {"text": systemMessage}
       ]
     });
     fullConversation.push({

@@ -87,7 +87,30 @@ function renderMarkdown(text) {
 }
 
 export function showFilePreview(fileName) {
-  filePreviewName.textContent = fileName;
+  const fileSize = fileInput.files[0]?.size;
+  const fileType = fileInput.files[0]?.type;
+  
+  let displayText = fileName;
+  if (fileSize) {
+    const sizeKB = Math.round(fileSize / 1024);
+    const sizeText = sizeKB > 1024 ? `${Math.round(sizeKB / 1024)}MB` : `${sizeKB}KB`;
+    displayText += ` (${sizeText})`;
+  }
+  
+  // Add file type indicator
+  if (fileType) {
+    if (fileType.startsWith('image/')) {
+      displayText = `📷 ${displayText}`;
+    } else if (fileType.startsWith('video/')) {
+      displayText = `🎥 ${displayText}`;
+    } else if (fileType.includes('pdf')) {
+      displayText = `📄 ${displayText}`;
+    } else {
+      displayText = `📎 ${displayText}`;
+    }
+  }
+  
+  filePreviewName.textContent = displayText;
   filePreviewContainer.style.display = 'flex';
   userInput.style.flexGrow = 0;
   userInput.style.width = '100%';
