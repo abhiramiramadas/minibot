@@ -7,6 +7,7 @@ A simple and responsive AI chatbot web app now with enhanced features and a robu
   - **Multimodal Input**: The bot now supports images, videos, and documents as part of the conversation, enabling visual queries.
   - **Gemini AI Integration**: The bot uses the Gemini AI API for real-time responses.
   - **Image Generation**: Generate images with the `/generate` command using the Hugging Face API.
+  - **Video Generation**: Generate images with the `/video` command using the Veo API (requires payment details in GCP).
   - **Speech Support (TTS/STT)**: Use Text-to-Speech to hear bot responses and Speech-to-Text for voice input. These features can be toggled in the settings.
   - **Persistent Sessions**: Conversation history is maintained using local storage, providing long-term context.
   - **Custom AI Personality**: You can set a custom personality for the AI using a dropdown menu and a pop-up modal.

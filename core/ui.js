@@ -46,14 +46,12 @@ export function addMessage(content, sender) {
   chatbox.scrollTop = chatbox.scrollHeight;
 }
 
-// Simple markdown renderer
 function renderMarkdown(text) {
   let html = text
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
     .replace(/`(.*?)`/g, '<code>$1</code>');
 
-  // Handle lists
   const listRegex = /(\* |\d\. ).*/g;
   const lines = html.split('\n');
   let inList = false;
@@ -97,16 +95,15 @@ export function showFilePreview(fileName) {
     displayText += ` (${sizeText})`;
   }
   
-  // Add file type indicator
   if (fileType) {
     if (fileType.startsWith('image/')) {
-      displayText = `📷 ${displayText}`;
+      displayText = `胴 ${displayText}`;
     } else if (fileType.startsWith('video/')) {
-      displayText = `🎥 ${displayText}`;
+      displayText = `磁 ${displayText}`;
     } else if (fileType.includes('pdf')) {
-      displayText = `📄 ${displayText}`;
+      displayText = `塘 ${displayText}`;
     } else {
-      displayText = `📎 ${displayText}`;
+      displayText = `梼 ${displayText}`;
     }
   }
   
@@ -156,17 +153,14 @@ export function applyCustomTheme() {
 
 export function setTheme(theme) {
   const body = document.body;
-  // Always clear all theme classes first to prevent conflicts
   body.classList.remove('dark-theme', 'ocean-theme', 'forest-theme', 'custom-theme');
   
-  // Reset custom CSS variables
   const root = document.documentElement;
   root.style.removeProperty('--light-primary-color');
   root.style.removeProperty('--light-bg-color');
   root.style.removeProperty('--light-container-bg');
   root.style.removeProperty('--light-message-bg');
 
-  // Remove any custom font link
   const customLink = document.getElementById('custom-font-link');
   if (customLink) {
     customLink.remove();
@@ -174,7 +168,6 @@ export function setTheme(theme) {
 
   if (theme === 'custom') {
       applyCustomTheme();
-      // Update theme toggle button icon
       themeToggleBtn.querySelector('i').className = 'fas fa-paint-brush';
       body.classList.add('custom-theme');
       return;
@@ -184,7 +177,6 @@ export function setTheme(theme) {
     body.classList.add(`${theme}-theme`);
   }
 
-  // Update theme toggle button icon
   if (theme === 'dark') {
     themeToggleBtn.querySelector('i').className = 'fas fa-sun';
   } else {
