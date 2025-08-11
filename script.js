@@ -68,7 +68,6 @@ window.onload = () => {
       speakBtn.classList.toggle('listening', speech.isListening);
     });
     
-    // Initialize session manager and display personalized greeting if user has preferences
     const personalizedContext = getPersonalizedContext();
     if (personalizedContext && conversationHistory.length === 0) {
       setTimeout(() => {
@@ -179,6 +178,27 @@ async function sendMessage() {
       console.error("Image generation API call failed:", error);
       ui.showErrorModal(`Unable to generate image right now. Details: ${error.message}`);
     }
+  } else if (message.toLowerCase().startsWith('/video ')) {
+    const videoPrompt = message.substring('/video '.length);
+    const geminiKey = settings.getApiKey('gemini');
+    if (!geminiKey) {
+      ui.showErrorModal("Gemini API key is not set. Please enter your key to generate videos.");
+      geminiApiKeyModal.style.display = 'flex';
+      return;
+    }
+    ui.addMessage(videoPrompt, "user");
+    ui.addMessage("Generating video, this may take a moment...", "bot");
+    try {
+      const videoUrl = await api.callGeminiVideoApi(videoPrompt);
+      if (videoUrl) {
+        ui.addMessage({ type: 'video', data: videoUrl }, "bot");
+      } else {
+        ui.addMessage("Sorry, I received an unexpected response from the video generation AI.", "bot");
+      }
+    } catch (error) {
+      console.error("Video generation API call failed:", error);
+      ui.showErrorModal(`Unable to generate video right now. Details: ${error.message}`);
+    }
   } else {
     const geminiKey = settings.getApiKey('gemini');
     if (!geminiKey) {
@@ -223,7 +243,6 @@ async function sendMessage() {
                 ]
               });
               
-              // Analyze conversation for learning user preferences
               analyzeCurrentConversation(conversationHistory);
               
               if (localStorage.getItem('ttsEnabled') === 'true') {
@@ -261,7 +280,6 @@ async function sendMessage() {
             ]
           });
           
-          // Analyze conversation for learning user preferences
           analyzeCurrentConversation(conversationHistory);
           
           if (localStorage.getItem('ttsEnabled') === 'true') {
